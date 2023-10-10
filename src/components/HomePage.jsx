@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, ImageBackground } from 'react-native';
+import { StyleSheet, ImageBackground } from 'react-native';
 import Header from './Header';
 import Footer from './Footer';
 import MainContent from '../screens/MainPage';
@@ -11,9 +11,7 @@ const HomePage = () => {
             style={styles.backgroundImage}
         >
             <Header />
-            <ScrollView style={styles.scrollView}>
-                <MainContent />
-            </ScrollView>
+            <MainContent />
             <Footer />
         </ImageBackground>
     );
@@ -25,9 +23,6 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         justifyContent: 'center',
     },
-    scrollView: {
-        flex: 1,
-    }
 },
 );
 
