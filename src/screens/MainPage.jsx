@@ -52,6 +52,7 @@ const MainContent = () => {
                     numColumns={2}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}
+                    windowSize={5}
                 />
 
             </View>
