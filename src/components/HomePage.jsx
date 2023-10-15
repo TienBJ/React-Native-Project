@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, ImageBackground } from 'react-native';
+import { StyleSheet, ImageBackground, ScrollView } from 'react-native';
 import Header from './Header';
 import Footer from './Footer';
 import MainContent from '../screens/MainPage';
+import PopularMenu from './PopularMenu';
 
 const HomePage = () => {
     return (
@@ -11,7 +12,10 @@ const HomePage = () => {
             style={styles.backgroundImage}
         >
             <Header />
-            <MainContent />
+            <ScrollView>
+                <MainContent />
+                <PopularMenu />
+            </ScrollView>
             <Footer />
         </ImageBackground>
     );
