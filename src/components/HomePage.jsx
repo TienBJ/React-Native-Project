@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import MainContent from '../screens/MainPage';
 import PopularMenu from './PopularMenu';
+import { Filter } from '../screens/Fillter';
 
 const HomePage = () => {
     return (
@@ -13,8 +14,9 @@ const HomePage = () => {
         >
             <Header />
             <ScrollView>
-                <MainContent />
-                <PopularMenu />
+                {/*<MainContent />
+                <PopularMenu />*/}
+                <Filter/>
             </ScrollView>
             <Footer />
         </ImageBackground>
