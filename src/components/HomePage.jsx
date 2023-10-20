@@ -5,6 +5,7 @@ import Footer from './Footer';
 import MainContent from '../screens/MainPage';
 import PopularMenu from './PopularMenu';
 import { Filter } from '../screens/Fillter';
+import { Chat } from '../screens/Chat';
 
 const HomePage = () => {
     return (
@@ -17,6 +18,7 @@ const HomePage = () => {
                 {/*<MainContent />
                 <PopularMenu />*/}
                 <Filter/>
+                <Chat/>
             </ScrollView>
             <Footer />
         </ImageBackground>
