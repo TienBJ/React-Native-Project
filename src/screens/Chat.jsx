@@ -1,5 +1,6 @@
 import React from "react";
 import { SafeAreaView, View, Image, Text, Pressable, StyleSheet} from "react-native";
+import Footer from "../components/Footer";
 
 export const Chat = () => {
     return (
@@ -35,7 +36,7 @@ export const Chat = () => {
                 </View>
                 <Text style={styles.timeActive}>20:00</Text>
             </Pressable>
-            
+            <Footer/>
         </SafeAreaView>
     )
 }
