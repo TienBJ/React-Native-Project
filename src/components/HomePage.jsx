@@ -15,10 +15,7 @@ const HomePage = () => {
         >
             <Header />
             <ScrollView>
-                {/*<MainContent />
-                <PopularMenu />*/}
-                <Filter/>
-                <Chat/>
+                <MainContent />
             </ScrollView>
             <Footer />
         </ImageBackground>
