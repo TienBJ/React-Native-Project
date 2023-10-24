@@ -1,6 +1,6 @@
 import { View, Text, Image, Pressable, ImageBackground, StyleSheet } from "react-native";
 
-const OrderDetails = () => {
+export const OrderDetails = () => {
     return (
         <View style={styles.orderPage}>
             <Text style={styles.textOrderPage}>Order details</Text>
@@ -215,10 +215,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
 
-
-
-
-
 })
-
-export default OrderDetails;
