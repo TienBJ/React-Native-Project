@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, Image } from "react-native";
+import { Text, Image, TouchableOpacity } from "react-native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen } from "./screens/HomeScreen";
@@ -7,6 +7,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { CartScreen } from "./screens/CartScreen";
 import { ChatScreen } from "./screens/Chat";
 import ProfileScreen from "./screens/ProfilesScreen";
+import ViewMoreRes from "./screens/ViewMoreRes";
 
 const homeName = "Home";
 const cartName = "Cart";
@@ -18,7 +19,7 @@ const HomeStack = createNativeStackNavigator();
 function HomeStackScreen() {
     return (
         <HomeStack.Navigator
-            screenOptions={{headerShown:false}}
+            screenOptions={{ headerShown: false }}
         >
             <HomeStack.Screen
                 name={homeName}
@@ -29,6 +30,12 @@ function HomeStackScreen() {
                 component={ProfileScreen}
                 options={{ headerShown: false }}
             />
+            <HomeStack.Screen
+                name="ViewMoreRes"
+                component={ViewMoreRes}
+                options={{ headerShown: false }}
+            />
+            
         </HomeStack.Navigator>
     )
 };
@@ -65,9 +72,21 @@ export default function MainContainer() {
                 },
             })}>
 
-            <Tab.Screen name={homeName} component={HomeStackScreen} />
+            <Tab.Screen name={homeName} component={HomeStackScreen} options={{ headerShown: false }} />
             <Tab.Screen name={profileName} component={ProfileScreen} />
-            <Tab.Screen name={cartName} component={CartScreen} />
+            <Tab.Screen
+                name={cartName}
+                component={CartScreen}
+                options={({ navigation }) => ({
+                    headerTitle: () => {
+                        return (
+                            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                                <Image source={require('../../assets/iconBack.png')} />
+                            </TouchableOpacity>
+                        );
+                    },
+                })}
+            />
             <Tab.Screen name={chatName} component={ChatScreen} />
 
         </Tab.Navigator>

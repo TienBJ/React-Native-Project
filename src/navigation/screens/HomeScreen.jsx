@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, ImageBackground, ScrollView, Button } from 'react-native';
-import { Header } from "../../components/Header";
+import Header from "../../components/Header";
 import MainContent from './MainPage';
+import PopularMenu from './PopularMenu';
 
 export const HomeScreen = ({ navigation }) => {
     return (
@@ -9,14 +10,11 @@ export const HomeScreen = ({ navigation }) => {
             source={require('../../../assets/Home/Homebackground.png')}
             style={styles.backgroundImage}
         >
-            {/*<Header />*/}
-            {/*<ScrollView>
-                <MainContent />
-            </ScrollView>*/}
-            <Button
-                title='Profile Page'
-                onPress={() => navigation.navigate('Profile')}
-            />
+            <Header />
+            <ScrollView>
+                <MainContent navigation={navigation} />
+                <PopularMenu />
+            </ScrollView>
         </ImageBackground>
     );
 };

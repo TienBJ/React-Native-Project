@@ -1,11 +1,19 @@
-import { View, ImageBackground,  Text, Image, Pressable, FlatList, StyleSheet, ScrollView } from "react-native"
+import * as React from "react";
+import { View, ImageBackground, Text, Image, Pressable, FlatList, StyleSheet, ScrollView } from "react-native";
+import Header from "../../components/Header";
 
-const MainContent = ({ navigation }) => {
-    const data = [
-        { id: "1", name: "Vegan Resto", image: require("../../../assets/Home/mage.png") },
-        { id: "2", name: "Healthy Food", image: require("../../../assets/Home/luamach.png") },
-    ];
+const data = [
+    { id: "1", name: "Vegan Resto", image: require("../../../assets/Home/mage.png") },
+    { id: "2", name: "Healthy Food", image: require("../../../assets/Home/luamach.png") },
+    { id: "3", name: "Good Food", image: require("../../../assets/Home/GoodFoot.png") },
+    { id: "4", name: "Smart Resto", image: require("../../../assets/Home/SmartResto.png") },
+    { id: "5", name: "Dianne Russell", image: require("../../../assets/Home/DianneRussell.png") },
+    { id: "6", name: "Spacy fresh crab", image: require("../../../assets/Home/luamach.png") },
+    { id: "7", name: "Spacy fresh crab", image: require("../../../assets/Home/luamach.png") },
+    { id: "8", name: "Green Noddle", image: require("../../../assets/Home/luamach.png") },
+];
 
+function ViewMoreRes() {
     const renderItem = ({ item }) => {
         return (
             <View style={styles.productContainer}>
@@ -19,37 +27,17 @@ const MainContent = ({ navigation }) => {
     return (
 
         <View style={StyleSheet.mainContent}>
-            <View style={styles.contentImage}>
-                <ImageBackground
-                    source={require('../../../assets/Home/protion.png')}
-                    style={styles.backgroundMainContent}
-                >
-                    <View style={styles.contentBackground}>
-                        <Text style={styles.spectialText}>Spectial Deal For October</Text>
-                        <Pressable style={styles.actionBuyNow}>
-                            <Text style={styles.textBuyNow}>
-                                Buy Now
-                            </Text>
-                        </Pressable>
-                    </View>
-                </ImageBackground>
-            </View>
+            <Header />
             <View style={styles.nearestRestuarant}>
                 <Text style={styles.textRestaurant}>Nearest Restaurant</Text>
-                <Pressable
-                onPress={() => navigation.navigate('ViewMoreRes')}
-                >
-                    <Text style={styles.textViewMore}>View More</Text>
-                </Pressable>
             </View>
-            <ScrollView >
-                <FlatList
-                    data={data}
-                    numColumns={2}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.id}
-                />
-            </ScrollView>
+
+            <FlatList
+                data={data}
+                numColumns={2}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id}
+            />
 
         </View>
 
@@ -133,7 +121,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFF",
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     productImage: {
@@ -147,4 +135,5 @@ const styles = StyleSheet.create({
     },
 })
 
-export default MainContent;
+
+export default ViewMoreRes;

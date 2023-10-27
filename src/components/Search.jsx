@@ -1,7 +1,7 @@
 import React from "react"
 import { View, TextInput, Image, StyleSheet } from "react-native"
 
-const Search = () => {
+function Search() {
     return (
         <View style={styles.Search}>
             <View style={styles.searchItem}>

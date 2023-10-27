@@ -164,8 +164,8 @@ const styles = StyleSheet.create({
         flex: 1,
         resizeMode: 'cover',
         height: 206,
-        marginTop: 100,
-        marginBottom: 100,
+        marginTop: 80,
+        marginBottom: 20,
     },
 
     totalHandle: {
@@ -173,7 +173,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         paddingHorizontal: 20,
-        paddingBottom: 50,
         color: '#FFF',
     },
 

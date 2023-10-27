@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Pressable, ImageBackground } from 'react-native';
-import { Search } from "./Search";
+import Search from './Search';
 
-export const Header = () => {
+function Header() {
     return (
         <View style={styles.header}>
             <View style={styles.headerText}>
@@ -46,3 +46,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 })
+
+export default Header;
