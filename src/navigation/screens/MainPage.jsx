@@ -1,15 +1,15 @@
-import { View, ImageBackground, Text, Image, Pressable, FlatList, StyleSheet, ScrollView } from "react-native"
+import { View, ImageBackground,  Text, Image, Pressable, FlatList, StyleSheet, ScrollView } from "react-native"
 
 const MainContent = () => {
     const data = [
-        { id: "1", name: "Vegan Resto", image: require("../../assets/Home/mage.png") },
-        { id: "2", name: "Healthy Food", image: require("../../assets/Home/luamach.png") },
-        { id: "3", name: "Good Food", image: require("../../assets/Home/GoodFoot.png") },
-        { id: "4", name: "Smart Resto", image: require("../../assets/Home/SmartResto.png") },
-        { id: "5", name: "Dianne Russell", image: require("../../assets/Home/DianneRussell.png") },
-        { id: "6", name: "Spacy fresh crab", image: require("../../assets/Home/luamach.png") },
-        { id: "7", name: "Spacy fresh crab", image: require("../../assets/Home/luamach.png") },
-        { id: "8", name: "Green Noddle", image: require("../../assets/Home/luamach.png") },
+        { id: "1", name: "Vegan Resto", image: require("../../../assets/Home/mage.png") },
+        { id: "2", name: "Healthy Food", image: require("../../../assets/Home/luamach.png") },
+        { id: "3", name: "Good Food", image: require("../../../assets/Home/GoodFoot.png") },
+        { id: "4", name: "Smart Resto", image: require("../../../assets/Home/SmartResto.png") },
+        { id: "5", name: "Dianne Russell", image: require("../../../assets/Home/DianneRussell.png") },
+        { id: "6", name: "Spacy fresh crab", image: require("../../../assets/Home/luamach.png") },
+        { id: "7", name: "Spacy fresh crab", image: require("../../../assets/Home/luamach.png") },
+        { id: "8", name: "Green Noddle", image: require("../../../assets/Home/luamach.png") },
     ];
 
     const renderItem = ({ item }) => {
@@ -23,40 +23,40 @@ const MainContent = () => {
     };
 
     return (
-        <ScrollView >
-            <View style={StyleSheet.mainContent}>
-                <View style={styles.contentImage}>
-                    <ImageBackground
-                        source={require('../../assets/Home/protion.png')}
-                        style={styles.backgroundMainContent}
-                    >
-                        <View style={styles.contentBackground}>
-                            <Text style={styles.spectialText}>Spectial Deal For October</Text>
-                            <Pressable style={styles.actionBuyNow}>
-                                <Text style={styles.textBuyNow}>
-                                    Buy Now
-                                </Text>
-                            </Pressable>
-                        </View>
-                    </ImageBackground>
-                </View>
-                <View style={styles.nearestRestuarant}>
-                    <Text style={styles.textRestaurant}>Nearest Restaurant</Text>
-                    <Pressable>
-                        <Text style={styles.textViewMore}>View More</Text>
-                    </Pressable>
-                </View>
 
+        <View style={StyleSheet.mainContent}>
+            <View style={styles.contentImage}>
+                <ImageBackground
+                    source={require('../../../assets/Home/protion.png')}
+                    style={styles.backgroundMainContent}
+                >
+                    <View style={styles.contentBackground}>
+                        <Text style={styles.spectialText}>Spectial Deal For October</Text>
+                        <Pressable style={styles.actionBuyNow}>
+                            <Text style={styles.textBuyNow}>
+                                Buy Now
+                            </Text>
+                        </Pressable>
+                    </View>
+                </ImageBackground>
+            </View>
+            <View style={styles.nearestRestuarant}>
+                <Text style={styles.textRestaurant}>Nearest Restaurant</Text>
+                <Pressable>
+                    <Text style={styles.textViewMore}>View More</Text>
+                </Pressable>
+            </View>
+            <ScrollView >
                 <FlatList
                     data={data}
                     numColumns={2}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}
-                    windowSize={5}
                 />
+            </ScrollView>
 
-            </View>
-        </ScrollView>
+        </View>
+
     )
 }
 

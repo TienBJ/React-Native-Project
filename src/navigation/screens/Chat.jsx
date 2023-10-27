@@ -1,13 +1,13 @@
 import React from "react";
 import { SafeAreaView, View, Image, Text, Pressable, StyleSheet} from "react-native";
 
-export const Chat = () => {
+export const ChatScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.chatTitle}>Chat</Text>
             <Pressable style={styles.chatDetail}>
                 <Image
-                source={require("../../assets/Message/Louis.png")}
+                source={require("../../../assets/Message/Louis.png")}
                 />
                 <View style={styles.userInformation}>
                     <Text style={styles.userName}>Louis Kelly</Text>
@@ -17,7 +17,7 @@ export const Chat = () => {
             </Pressable>
             <Pressable style={styles.chatDetail}>
                 <Image
-                source={require("../../assets/Message/Paul.png")}
+                source={require("../../../assets/Message/Paul.png")}
                 />
                 <View style={styles.userInformation}>
                     <Text style={styles.userName}>Paul Koch</Text>
@@ -27,7 +27,7 @@ export const Chat = () => {
             </Pressable>
             <Pressable style={styles.chatDetail}>
                 <Image
-                source={require("../../assets/Message/Louis.png")}
+                source={require("../../../assets/Message/Louis.png")}
                 />
                 <View style={styles.userInformation}>
                     <Text style={styles.userName}>Carla Klein</Text>

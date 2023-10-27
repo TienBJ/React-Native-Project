@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 import { View, Pressable, Image, Text, StyleSheet } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { ProfileScreen } from "../navigation/screens/ProfileSScreen";
+import { CartScreen } from "../navigation/screens/CartScreen";
+import { ChatScreen } from "../navigation/screens/Chat";
+
 
 const Footer = () => {
   const [selectedAction, setSelectedAction] = useState(null);
@@ -7,6 +12,32 @@ const Footer = () => {
   const handleActionPress = (actionName) => {
     setSelectedAction(actionName);
   };
+
+  const screenData = [
+    { name: "Profile", component: ProfileScreen },
+    { name: "Chat", component: ChatScreen },
+    { name: "Cart", component: CartScreen },
+  ];
+
+  const Tab = createBottomTabNavigator();
+
+  //function MainAction() {
+  //  return (
+  //    <Tab.Navigator
+  //      initialRouteName="Home"
+  //      screenOptions={{ tabBarShowLabel: false }}
+  //    >
+  //      {screenData.map(({ name, component }) => (
+  //        <Tab.Screen
+  //          key={name}
+  //          name={name}
+  //          component={component}
+  //        />
+  //      ))}
+  //    </Tab.Navigator>
+  //  );
+  //}
+  
 
   return (
     <View style={styles.footer}>
