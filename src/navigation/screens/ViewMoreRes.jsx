@@ -47,7 +47,7 @@ function ViewMoreRes({ navigation }) {
 const styles = StyleSheet.create({
     mainContent: {
        flex: 1,
-        backgroundColor: "#FEFEFF",
+        backgroundColor: "#FAFAFA",
     },
 
     textMin: {
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     productContainer: {
         flex: 1,
         margin: 10,
-        padding: 10,
-        borderRadius: 5,
+        padding: 40,
+        borderRadius: 22,
         backgroundColor: "#FFF",
         flexDirection: 'column',
         justifyContent: 'center',

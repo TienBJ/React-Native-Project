@@ -46,6 +46,7 @@ const MainContent = ({ navigation }) => {
             </View>
 
             <FlatList
+                style={styles.cover}
                 data={data}
                 numColumns={2}
                 renderItem={renderItem}
@@ -129,9 +130,9 @@ const styles = StyleSheet.create({
     },
     productContainer: {
         flex: 1,
-        margin: 10,
-        padding: 10,
-        borderRadius: 5,
+        margin:8,
+        padding: 30,
+        borderRadius: 22,
         backgroundColor: "#FFF",
         flexDirection: 'column',
         justifyContent: 'center',
@@ -147,6 +148,10 @@ const styles = StyleSheet.create({
         marginTop: 5,
         fontWeight: "bold",
     },
+    cover:{
+        backgroundColor:"#FAFAFA",
+        color: "#FAFAFA"
+    }
 })
 
 export default MainContent;
