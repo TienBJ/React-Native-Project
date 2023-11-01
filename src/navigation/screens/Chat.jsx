@@ -1,11 +1,16 @@
 import React from "react";
-import { SafeAreaView, View, Image, Text, Pressable, StyleSheet} from "react-native";
+import { SafeAreaView, View, Image, Text, Pressable, StyleSheet, TouchableOpacity} from "react-native";
 
-export const ChatScreen = () => {
+export const ChatScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
+            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                <Image source={require('../../../assets/iconBack.png')} />
+            </TouchableOpacity>
             <Text style={styles.chatTitle}>Chat</Text>
-            <Pressable style={styles.chatDetail}>
+            <Pressable 
+            onPress={() => navigation.navigate("ChatDetailScreen")}
+            style={styles.chatDetail}>
                 <Image
                 source={require("../../../assets/Message/Louis.png")}
                 />
@@ -43,17 +48,18 @@ export const ChatScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        paddingTop: 50,
+        gap: 20,
+        padding: 20,
     },
     chatTitle: {
         fontSize: 25,
         fontWeight: "bold",
-        margin: 20,
     },
     chatDetail: {
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: "#E5E5E5",
-        margin: 20,
         height: 81,
         paddingVertical: 8,
         paddingHorizontal: 10,

@@ -1,16 +1,13 @@
 import React from "react";
-import { SafeAreaView, Text, View, Image, Pressable, StyleSheet, onPress } from "react-native";
+import { SafeAreaView, Text, View, Image, Pressable, StyleSheet } from "react-native";
+import Header from "../../components/Header";
 
-const PopularMenu = ({ navigation }) => {
+const ExploreMenu = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
+            <Header navigation={navigation}/>
             <View style={styles.popularTitle}>
                 <Text style={styles.title}>Popular Menu</Text>
-                <Pressable
-                onPress={() => navigation.navigate('ExploreMenu')}
-                >
-                    <Text style={styles.textViewMore}>View More</Text>
-                </Pressable>
             </View>
 
             <View style={styles.listItem}>
@@ -24,6 +21,26 @@ const PopularMenu = ({ navigation }) => {
                     </View>
                     <Text style={styles.itemPrice}>$7</Text>
                 </Pressable>
+                <Pressable style={styles.item}>
+                    <Image
+                        source={require('../../../assets/Home/FruitSalad.png')}
+                    />
+                    <View style={styles.itemDetail}>
+                        <Text style={styles.itemMune}>Fruit Salad</Text>
+                        <Text style={styles.itemRestaurant}>Wijie Resto</Text>
+                    </View>
+                    <Text style={styles.itemPrice}>$5</Text>
+                </Pressable>
+                <Pressable style={styles.item}>
+                    <Image
+                        source={require('../../../assets/Home/GreenNoddle.png')}
+                    />
+                    <View style={styles.itemDetail}>
+                        <Text style={styles.itemMune}>Green Noddle</Text>
+                        <Text style={styles.itemRestaurant}>Noodle Home</Text>
+                    </View>
+                    <Text style={styles.itemPrice}>$15</Text>
+                </Pressable>
             </View>
         </SafeAreaView>
     )
@@ -32,7 +49,7 @@ const PopularMenu = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 31,
+        paddingHorizontal: 25,
     },
     title: {
         fontSize: 15,
@@ -42,14 +59,14 @@ const styles = StyleSheet.create({
     listItem: {
         flexDirection: "column",
         justifyContent: "space-between",
-        paddingBottom: 120,
+
     },
     item: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
         padding: 16,
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#FFF",
         borderRadius: 10,
         marginBottom: 16,
     },
@@ -79,4 +96,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default PopularMenu;
+export default ExploreMenu;

@@ -13,7 +13,7 @@ const data = [
     { id: "8", name: "Green Noddle", image: require("../../../assets/Home/luamach.png") },
 ];
 
-function ViewMoreRes({ navigation }) {
+export default function ExploreRestarantWithFillter({ navigation }) {
     const renderItem = ({ item }) => {
         return (
             <View style={styles.productContainer}>
@@ -27,7 +27,20 @@ function ViewMoreRes({ navigation }) {
     return (
 
         <View style={styles.mainContent}>
-            <Header navigation={navigation}/>
+            <Header />
+            <View style={{ flexDirection: 'row', gap: 20, paddingHorizontal: 20 }}>
+                <Pressable
+                    onPress={() => navigation.navigate('ExploreMenuWithFillter')}
+                    style={styles.item}>
+                    <View style={styles.location}>
+                        <Text style={styles.titleItem}>&gt;</Text>
+                        <Text style={styles.titleItem}>10 Km X</Text>
+                    </View>
+                </Pressable>
+                <Pressable style={styles.itemSoup}>
+                    <Text style={styles.titleItem}>Soup X</Text>
+                </Pressable>
+            </View>
             <View style={styles.nearestRestuarant}>
                 <Text style={styles.textRestaurant}>Nearest Restaurant</Text>
             </View>
@@ -46,7 +59,7 @@ function ViewMoreRes({ navigation }) {
 
 const styles = StyleSheet.create({
     mainContent: {
-       flex: 1,
+        flex: 1,
         backgroundColor: "#FEFEFF",
     },
 
@@ -131,7 +144,35 @@ const styles = StyleSheet.create({
         marginTop: 5,
         fontWeight: "bold",
     },
+    item: {
+        backgroundColor: "rgba(0, 255, 102, 0.1)",
+        height: 44,
+        paddingHorizontal: 20,
+        borderRadius: 15,
+        marginBottom: 20,
+        width: 112,
+        justifyContent: 'center',
+    },
+    titleItem: {
+        fontSize: 15,
+        color: "#6B50F6",
+    },
+    itemSoup: {
+        backgroundColor: "rgba(0, 255, 102, 0.1)",
+        height: 44,
+        paddingHorizontal: 20,
+        borderRadius: 15,
+        marginBottom: 20,
+        width: 92,
+        justifyContent: 'center',
+    },
+    titleItem: {
+        fontSize: 15,
+        color: "#6B50F6",
+    },
+    location: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
 })
-
-
-export default ViewMoreRes;

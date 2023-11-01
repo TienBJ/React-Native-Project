@@ -1,4 +1,4 @@
-import { View, ImageBackground,  Text, Image, Pressable, FlatList, StyleSheet, ScrollView } from "react-native"
+import { View, ImageBackground, Text, Image, Pressable, FlatList, StyleSheet } from "react-native"
 
 const MainContent = ({ navigation }) => {
     const data = [
@@ -26,7 +26,9 @@ const MainContent = ({ navigation }) => {
                 >
                     <View style={styles.contentBackground}>
                         <Text style={styles.spectialText}>Spectial Deal For October</Text>
-                        <Pressable style={styles.actionBuyNow}>
+                        <Pressable 
+                        onPress={() => navigation.navigate('VoucherPromote')}
+                        style={styles.actionBuyNow}>
                             <Text style={styles.textBuyNow}>
                                 Buy Now
                             </Text>
@@ -37,19 +39,18 @@ const MainContent = ({ navigation }) => {
             <View style={styles.nearestRestuarant}>
                 <Text style={styles.textRestaurant}>Nearest Restaurant</Text>
                 <Pressable
-                onPress={() => navigation.navigate('ViewMoreRes')}
+                    onPress={() => navigation.navigate('ViewMoreRes')}
                 >
                     <Text style={styles.textViewMore}>View More</Text>
                 </Pressable>
             </View>
-            <ScrollView >
-                <FlatList
-                    data={data}
-                    numColumns={2}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.id}
-                />
-            </ScrollView>
+
+            <FlatList
+                data={data}
+                numColumns={2}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id}
+            />
 
         </View>
 
@@ -58,7 +59,7 @@ const MainContent = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     mainContent: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: "#FEFEFF",
@@ -78,7 +79,6 @@ const styles = StyleSheet.create({
         width: 325,
         height: 150,
         flexDirection: 'column',
-        alignItems: 'flex-end',
         justifyContent: 'center',
     },
 
@@ -89,9 +89,10 @@ const styles = StyleSheet.create({
     },
 
     contentBackground: {
-        width: 145,
-        flexDirection: 'column',
-        gap: 10,
+        gap: 20,
+        width: 150,
+        position: 'absolute',
+        left: '52%'
     },
 
     actionBuyNow: {
@@ -120,6 +121,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 20,
+        color: "#FFF"
     },
 
     textViewMore: {

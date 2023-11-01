@@ -1,35 +1,37 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Pressable, ImageBackground } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable, ImageBackground, SafeAreaView } from 'react-native';
 import Search from './Search';
 
-function Header() {
+function Header({ navigation }) {
     return (
-        <View style={styles.header}>
+        <View style={styles.container}>
             <View style={styles.headerText}>
                 <View style={styles.textLogo}>
                     <Text style={styles.textLogo}>Find Your  </Text>
                     <Text style={styles.textLogo}>Favorite Food  </Text>
                 </View>
-                <View style={styles.Notification}>
+                <Pressable 
+                onPress={() => navigation.navigate('NotificationScreen')}
+                style={styles.Notification}>
                     <Image style={styles.iconBell} source={require('../../assets/Home/Notification.png')} />
-                </View>
+                </Pressable>
             </View>
-            <Search />
+            <Search navigation={navigation} />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    header: {
-      top: 30,
-      padding: 15,
+    container: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 60,
     },
 
     headerText: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        gap: 20,
-        
+        flexDirection: "row",
+        justifyContent: "space-between",
     },
 
     textLogo: {

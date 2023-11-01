@@ -1,9 +1,9 @@
 import React from "react"
-import { View, TextInput, Image, StyleSheet } from "react-native"
+import { View, TextInput, Image, StyleSheet, Pressable } from "react-native"
 
-function Search() {
+function Search({ navigation }) {
     return (
-        <View style={styles.Search}>
+        <View style={styles.container}>
             <View style={styles.searchItem}>
                 <Image
                     style={styles.iconSearch}
@@ -15,18 +15,20 @@ function Search() {
                     placeholderTextColor={'#6B50F6'}
                 />
             </View>
-            <View style={styles.filterItem}>
+            <Pressable
+                onPress={() => navigation.navigate('Filter')}
+                style={styles.filterItem}>
                 <Image
-                style={styles.iconFilter}
-                source={require('../../assets/Home/Filter.png')}
+                    style={styles.iconFilter}
+                    source={require('../../assets/Home/Filter.png')}
                 />
-            </View>
+            </Pressable>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    Search: {
+    container: {
         flexDirection: 'row',
         gap: 10,
         top: -40,
