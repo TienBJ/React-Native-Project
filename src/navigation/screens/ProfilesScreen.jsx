@@ -6,7 +6,7 @@ export default function ProfileScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <ParallaxScrollView
-                parallaxHeaderHeight={300}
+                parallaxHeaderHeight={320}
                 renderForeground={() => (
                     <ImageBackground
                         source={require('../../../assets/Profile/profilePhoto.png')}
@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     actionScrool: {
         alignItems: "center",
         marginBottom: 10,
+        marginTop: -20,
     },
     scrollToll: {
         backgroundColor: "#FEF6ED",
@@ -113,8 +114,10 @@ const styles = StyleSheet.create({
         gap: 20,
         paddingTop: 34,
         paddingHorizontal: 20,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40,
+        backgroundColor: "#FFF",
+        marginTop: -35,
     },
     imageProfile: {
         flex: 1,
