@@ -20,7 +20,8 @@ export default function ProfileScreen() {
                     <View style={styles.actionScrool}>
                         <View style={styles.scrollToll}></View>
                     </View>
-                    <View style={styles.memberTitle}>
+                    <View>
+                        <View style={styles.memberTitle}></View>
                         <Text style={styles.textMember}>Member Gold</Text>
                     </View>
                     <View style={styles.profileName}>
@@ -133,6 +134,7 @@ const styles = StyleSheet.create({
     textMember: {
         color: "#6B50F6",
         paddingHorizontal: 17,
+        marginTop: - 27,
     },
     profileName: {
         flexDirection: "row",
@@ -177,7 +179,7 @@ const styles = StyleSheet.create({
         opacity: 0.3,
     },
     itemPrice: {
-        color: "6B50F6",
+        color: "#6B50F6",
         fontSize: 19,
         fontWeight: 'bold',
     },

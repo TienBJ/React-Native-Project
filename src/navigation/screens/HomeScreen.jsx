@@ -14,7 +14,7 @@ export const HomeScreen = ({ navigation }) => {
                 <Header navigation={navigation} />
                 <ScrollView>
                     <MainContent navigation={navigation} />
-                    <PopularMenu navigation={navigation}/>
+                    <PopularMenu navigation={navigation} />
                 </ScrollView>
             </ImageBackground>
         </SafeAreaView>

@@ -13,7 +13,7 @@ export const PaymentScreen = ({ navigation }) => {
                     <View style={styles.editAction}>
                         <Text style={styles.nameAction}>Deliver To</Text>
                         <Pressable
-                        onPress={() => navigation.navigate('EditLocationScreen')}
+                            onPress={() => navigation.navigate('EditLocationScreen')}
                         >
                             <Text style={styles.editTitle}>Edit</Text>
                         </Pressable>
@@ -29,7 +29,7 @@ export const PaymentScreen = ({ navigation }) => {
                     <View style={styles.editAction}>
                         <Text style={styles.nameAction}>Payment Method</Text>
                         <Pressable
-                        onPress={() => navigation.navigate('EditPaymentScreen')}
+                            onPress={() => navigation.navigate('EditPaymentScreen')}
                         >
                             <Text style={styles.editTitle}>Edit</Text>
                         </Pressable>
@@ -42,7 +42,12 @@ export const PaymentScreen = ({ navigation }) => {
                     </View>
                 </View>
             </View>
-            <ImageBackground
+            <View style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center"
+            }}>
+                <ImageBackground
                     source={require('../../../assets/OrderDetails/backgroundTotal.png')}
                     style={styles.backgroundContainer}
                 >
@@ -62,16 +67,16 @@ export const PaymentScreen = ({ navigation }) => {
                             </View>
                         </View>
                         <View style={styles.buttonSubmit}>
-                            <Pressable 
-                            onPress={() => navigation.navigate('OrderScreen')}
-                            style={styles.actionButton}
+                            <Pressable
+                                onPress={() => navigation.navigate('OrderScreen')}
+                                style={styles.actionButton}
                             >
                                 <Text style={styles.textAction}>Place My Order</Text>
                             </Pressable>
                         </View>
                     </View>
                 </ImageBackground>
-
+            </View>
         </SafeAreaView>
     )
 }
@@ -85,7 +90,7 @@ const styles = StyleSheet.create({
     },
     textWhite: {
         color: "#FFF"
-    },    
+    },
     actionPayment: {
         flexDirection: "column",
         backgroundColor: "#FFF",
@@ -97,6 +102,7 @@ const styles = StyleSheet.create({
     },
     actionList: {
         gap: 20,
+        marginBottom: 120,
     },
     confirmOrder: {
         fontSize: 25,
@@ -121,9 +127,8 @@ const styles = StyleSheet.create({
     backgroundContainer: {
         flex: 1,
         resizeMode: 'cover',
-        height: 206,
-        marginTop: 10,
-        marginBottom: 20,
+        height: 216,
+        width: 346,
     },
 
     totalHandle: {
@@ -132,6 +137,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: 20,
         color: '#FFF',
+        marginTop: 20,
     },
 
     totalDetail: {

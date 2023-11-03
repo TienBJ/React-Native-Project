@@ -6,7 +6,7 @@ const OrderScreen = ({ navigation }) => {
     return (
         <ScrollView>
             <SafeAreaView style={styles.container}>
-                <Header navigation={navigation}/>
+                <Header navigation={navigation} />
                 <View style={styles.listItem}>
                     <Pressable style={styles.item}>
                         <Image
@@ -39,27 +39,27 @@ const OrderScreen = ({ navigation }) => {
                         </Pressable>
                     </Pressable>
                     <Pressable style={styles.item2}>
-                        <Image source={require('../../../assets/Home/HerbalPancake.png')} />
+                        <Image source={require('../../../assets/Payments/item2.png')} />
                         <View style={styles.itemDetail}>
                             <Text style={styles.itemMune}>Herbal Pancake</Text>
                             <Text style={styles.itemRestaurant}>Warung Herbal</Text>
-                            <Text style={styles.itemPrice}>$ 35</Text>
+                            <Text style={styles.itemPrice2}>$ 35</Text>
                         </View>
-                        <Pressable style={styles.actionBuy}>
+                        <Pressable style={styles.actionBuy2}>
                             <Text style={styles.buyTitle}>Process</Text>
                         </Pressable>
                     </Pressable>
                     <Pressable style={styles.item2}>
                         <Image
-                            source={require('../../../assets//OrderDetails/product4.png')}
+                            source={require('../../../assets/Payments/itemCream.png')}
                         />
                         <View style={styles.itemDetail}>
                             <Text style={styles.itemMune}>Fruit Salad</Text>
                             <Text style={styles.itemRestaurant}>Wijie Resto</Text>
-                            <Text style={styles.itemPrice}>$ 35</Text>
+                            <Text style={styles.itemPrice2}>$ 35</Text>
                         </View>
                         <Pressable
-                            style={styles.actionBuy}
+                            style={styles.actionBuy2}
                         >
                             <Text style={styles.buyTitle}>Proccess</Text>
                         </Pressable>
@@ -88,6 +88,10 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
 
     },
+    itemMune: {
+        fontSize: 15,
+        fontWeight: "bold"
+    },
     item: {
         flexDirection: "row",
         justifyContent: "space-between",
@@ -102,17 +106,13 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         padding: 16,
-        backgroundColor: "#D9D9D9",
+        backgroundColor: "#F6F6F6",
         borderRadius: 10,
         marginBottom: 16,
     },
     itemDetail: {
         flex: 1,
-        marginLeft: 26,
-    },
-    itemMenu: {
-        fontSize: 15,
-        fontWeight: "bold",
+        marginLeft: 15,
     },
     itemRestaurant: {
         fontSize: 14,
@@ -122,6 +122,11 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: "bold",
         color: "#6B50F6",
+    },
+    itemPrice2: {
+        fontSize: 22,
+        fontWeight: "bold",
+        color: "#D9D9D9",
     },
     popularTitle: {
         flexDirection: 'row',
@@ -134,6 +139,14 @@ const styles = StyleSheet.create({
         height: 29,
         width: 79,
         backgroundColor: "#6B50F6",
+        borderRadius: 17.5,
+        paddingHorizontal: 11,
+        justifyContent: "center",
+    },
+    actionBuy2: {
+        height: 29,
+        width: 79,
+        backgroundColor: "#D9D9D9",
         borderRadius: 17.5,
         paddingHorizontal: 11,
         justifyContent: "center",

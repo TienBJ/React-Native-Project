@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, View, Image, Text, Pressable, StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
+import { SafeAreaView, View, Image, Text, Pressable, StyleSheet, TouchableOpacity, ImageBackground, TextInput } from "react-native";
 
 export const ChatDetailScreen = ({ navigation }) => {
     return (
@@ -26,20 +26,37 @@ export const ChatDetailScreen = ({ navigation }) => {
                         />
                     </Pressable>
                 </View>
-                <View style={styles.messageContainer}>
-                    <View style={styles.messageContent}>
-                        <View style={styles.content}>
+                <View style={styles.listContents}>
+                    <View style={styles.content}>
+                        <View style={styles.left}>
                             <Text style={styles.contentLeft}>Just to order</Text>
                         </View>
-                        <View style={styles.content}>
+                    </View>
+                    <View style={styles.content}>
+                        <View style={styles.right}>
                             <Text style={styles.contentRight}>Okay, for what level of spiciness?</Text>
                         </View>
-                        <View style={styles.content}>
+                    </View>
+                    <View style={styles.content}>
+                        <View style={styles.left}>
                             <Text style={styles.contentLeft}>Okay, wait a minute 👍</Text>
                         </View>
-                        <View style={styles.content}>
+                    </View>
+                    <View style={styles.content}>
+                        <View style={styles.right}>
                             <Text style={styles.contentRight}>Okay I'm waiting  👍</Text>
                         </View>
+                    </View>
+                </View>
+                <View style={styles.inputMessage}>
+                    <View style={{ flexDirection: 'row', gap: 120 }}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder={"Okay I'm waiting  👍"}
+                        />
+                        <Image
+                            source={require('../../../assets/Message/iconSend.png')}
+                        />
                     </View>
                 </View>
             </SafeAreaView>
@@ -49,10 +66,9 @@ export const ChatDetailScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: "column",
         paddingTop: 50,
         gap: 20,
-        padding: 20,
+        paddingHorizontal: 20,
     },
     chatTitle: {
         fontSize: 25,
@@ -79,27 +95,43 @@ const styles = StyleSheet.create({
         fontSize: 14,
         opacity: 0.3,
     },
-    messageContent: {
-        flex: 1,
+    listContents: {
         gap: 20,
     },
-    messageContainer: {
-        flex: 1,
-        
-    },
     content: {
-        backgroundColor: "blue",
         height: 41,
         paddingBottom: 10,
         borderRadius: 13,
         justifyContent: 'center',
         padding: 12,
-
     },
     contentLeft: {
         textAlign: 'left',
     },
     contentRight: {
         textAlign: 'right',
+        color: '#FFF',
     },
+    left: {
+        backgroundColor: "#F6F6F6",
+        height: 41,
+        justifyContent: 'center',
+        borderRadius: 13,
+        paddingHorizontal: 20,
+    },
+    right: {
+        backgroundColor: "#6B50F6",
+        height: 41,
+        justifyContent: 'center',
+        borderRadius: 13,
+        paddingHorizontal: 20,
+    },
+    inputMessage: {
+        backgroundColor: "#FFF",
+        height: 74,
+        borderRadius: 22,
+        justifyContent: 'center',
+        paddingHorizontal: 25,
+        //marginTop: 160,
+    }
 })

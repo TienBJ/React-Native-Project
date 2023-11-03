@@ -87,11 +87,11 @@ const styles = StyleSheet.create({
     item: {
         backgroundColor: "rgba(0, 255, 102, 0.1)",
         height: 44,
-        paddingVertical: 14,
         paddingHorizontal: 20,
         borderRadius: 15,
         marginRight: 10,
         marginBottom: 10,
+        justifyContent: "center",
     },
     location: {
         flexDirection: "row",
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
     bottomAction: {
-        marginTop: 80,
+        marginTop: 118,
         backgroundColor: "#6B50F6",
         height: 57,
         width: 325,

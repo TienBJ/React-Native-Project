@@ -4,7 +4,7 @@ import { View, Text, Image, Pressable, ImageBackground, StyleSheet, TouchableOpa
 import { SwipeListView } from "react-native-swipe-list-view";
 
 export const CartScreen = ({ navigation }) => {
-    const [counts, setCounts] = useState([0, 0, 0]);
+    const [counts, setCounts] = useState([1, 1, 1]);
 
     const handlePlus = (index) => {
         const newCounts = [...counts];
@@ -19,10 +19,9 @@ export const CartScreen = ({ navigation }) => {
             setCounts(newCounts);
         }
         else {
-            Alert.alert('Error', 'The number cannot be less than 0');
+            Alert.alert('Error', 'The number cannot be less than 1');
         }
     };
-
 
     const ProductList = [
         { image: "1", name: "Spicy fresh crab", information: "Waroenk kita", price: "$35" },
@@ -37,79 +36,84 @@ export const CartScreen = ({ navigation }) => {
             </TouchableOpacity>
             <Text style={styles.textOrderPage}>Order details</Text>
             <ScrollView>
-                <View style={styles.itemContainer}>
-                    <SwipeListView
-                        data={ProductList}
-                        renderItem={({ item, index }) => (
-                            <View style={styles.items}>
-                                <Image
-                                    source={require("../../../assets/OrderDetails/product1.png")}
-                                    style={styles.itemImage}
-                                />
-                                <View style={styles.itemDetail}>
-                                    <Text style={styles.itemName}>{item.name}</Text>
-                                    <Text style={styles.itemInformation}>{item.information}</Text>
-                                    <Text style={styles.itemPrice}>{item.price}</Text>
-                                </View>
-                                <View style={styles.itemHandle}>
-                                    <Pressable onPress={() => handleMinus(index)}>
-                                        <Image
-                                            source={require('../../../assets/OrderDetails/IconMinus.png')}
-                                            style={styles.iconMinus}
-                                        />
-                                    </Pressable>
-                                    <Text style={styles.itemQuantity}>{counts[index]}</Text>
-                                    <Pressable onPress={() => handlePlus(index)}>
-                                        <Image
-                                            source={require('../../../assets/OrderDetails/IconPlus.png')}
-                                            style={styles.iconPlus}
-                                        />
-                                    </Pressable>
-                                </View>
+
+                <SwipeListView
+                    data={ProductList}
+                    renderItem={({ item, index }) => (
+                        <View style={styles.items}>
+                            <Image
+                                source={require("../../../assets/OrderDetails/product1.png")}
+                                style={styles.itemImage}
+                            />
+                            <View style={styles.itemDetail}>
+                                <Text style={styles.itemName}>{item.name}</Text>
+                                <Text style={styles.itemInformation}>{item.information}</Text>
+                                <Text style={styles.itemPrice}>{item.price}</Text>
                             </View>
-                        )}
-                        renderHiddenItem={() => (
-                            <View style={styles.actionDelete}>
-                                <Pressable>
+                            <View style={styles.itemHandle}>
+                                <Pressable onPress={() => handleMinus(index)}>
                                     <Image
-                                        source={require('../../../assets/OrderDetails/trash.png')}
-                                        style={styles.iconDelete}
+                                        source={require('../../../assets/OrderDetails/IconMinus.png')}
+                                        style={styles.iconMinus}
+                                    />
+                                </Pressable>
+                                <Text style={styles.itemQuantity}>{counts[index]}</Text>
+                                <Pressable onPress={() => handlePlus(index)}>
+                                    <Image
+                                        source={require('../../../assets/OrderDetails/IconPlus.png')}
+                                        style={styles.iconPlus}
                                     />
                                 </Pressable>
                             </View>
-                        )}
-                        rightOpenValue={-75}
-                    />
-                </View>
-                <ImageBackground
-                    source={require('../../../assets/OrderDetails/backgroundTotal.png')}
-                    style={styles.backgroundContainer}
-                >
-                    <View style={styles.totalHandle}>
-                        <View style={styles.totalDetail}>
-                            <View style={styles.contentLeft}>
-                                <Text style={styles.textWhite}>Sub-Total</Text>
-                                <Text style={styles.textWhite}>Delivery Charge</Text>
-                                <Text style={styles.textWhite}>Discount</Text>
-                                <Text style={styles.textTotal}>Total</Text>
-                            </View>
-                            <View style={styles.contentRight}>
-                                <Text style={styles.textWhite}>120 $</Text>
-                                <Text style={styles.textWhite}>10 $</Text>
-                                <Text style={styles.textWhite}>20 $</Text>
-                                <Text style={styles.textSumPrice}>150 $</Text>
-                            </View>
                         </View>
-                        <View style={styles.buttonSubmit}>
-                            <Pressable 
-                            onPress={() => navigation.navigate('PaymentScreen')}
-                            style={styles.actionButton}
-                            >
-                                <Text style={styles.textAction}>Place My Order</Text>
+                    )}
+                    renderHiddenItem={() => (
+                        <View style={styles.actionDelete}>
+                            <Pressable>
+                                <Image
+                                    source={require('../../../assets/OrderDetails/trash.png')}
+                                    style={styles.iconDelete}
+                                />
                             </Pressable>
                         </View>
-                    </View>
-                </ImageBackground>
+                    )}
+                    rightOpenValue={-75}
+                />
+                <View style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                    <ImageBackground
+                        source={require('../../../assets/OrderDetails/backgroundTotal.png')}
+                        style={styles.backgroundContainer}
+                    >
+                        <View style={styles.totalHandle}>
+                            <View style={styles.totalDetail}>
+                                <View style={styles.contentLeft}>
+                                    <Text style={styles.textWhite}>Sub-Total</Text>
+                                    <Text style={styles.textWhite}>Delivery Charge</Text>
+                                    <Text style={styles.textWhite}>Discount</Text>
+                                    <Text style={styles.textTotal}>Total</Text>
+                                </View>
+                                <View style={styles.contentRight}>
+                                    <Text style={styles.textWhite}>120 $</Text>
+                                    <Text style={styles.textWhite}>10 $</Text>
+                                    <Text style={styles.textWhite}>20 $</Text>
+                                    <Text style={styles.textSumPrice}>150 $</Text>
+                                </View>
+                            </View>
+                            <View style={styles.buttonSubmit}>
+                                <Pressable
+                                    onPress={() => navigation.navigate('PaymentScreen')}
+                                    style={styles.actionButton}
+                                >
+                                    <Text style={styles.textAction}>Place My Order</Text>
+                                </Pressable>
+                            </View>
+                        </View>
+                    </ImageBackground>
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
@@ -172,8 +176,8 @@ const styles = StyleSheet.create({
         flex: 1,
         resizeMode: 'cover',
         height: 206,
-        marginTop: 80,
-        marginBottom: 20,
+        marginBottom: 80,
+        width: 346,
     },
 
     totalHandle: {
