@@ -1,15 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState,map} from "react";
 import { Alert } from "react-native";
 import { View, Text, Image, Pressable, ImageBackground, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
+import TotalPrice from "../../components/TotalPrice";
 
 export const CartScreen = ({ navigation }) => {
     const [counts, setCounts] = useState([1, 1, 1]);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const totalItemPrice=0;
+    useEffect(() => {
+        const initialTotalPrice = ProductList.reduce((total, item, index) => {
+            const itemPrice = parseFloat(item.price);
+            return total + (counts[index] * itemPrice);
+        }, 0);
+        setTotalPrice(initialTotalPrice);
+    }, []);
 
     const handlePlus = (index) => {
         const newCounts = [...counts];
         newCounts[index]++;
         setCounts(newCounts);
+
+
+        const itemPrice = parseFloat(ProductList[index].price);
+        const subtotal = newCounts[index] * itemPrice;
+
+
+        const newTotalPrice = totalPrice + subtotal;
+        setTotalPrice(newTotalPrice);
     };
 
     const handleMinus = (index) => {
@@ -17,6 +35,13 @@ export const CartScreen = ({ navigation }) => {
             const newCounts = [...counts];
             newCounts[index]--;
             setCounts(newCounts);
+
+            const itemPrice = parseFloat(ProductList[index].price);
+            const subtotal = newCounts[index] * itemPrice;
+    
+    
+            const newTotalPrice = totalPrice + subtotal;
+            setTotalPrice(newTotalPrice);
         }
         else {
             Alert.alert('Error', 'The number cannot be less than 1');
@@ -24,9 +49,9 @@ export const CartScreen = ({ navigation }) => {
     };
 
     const ProductList = [
-        { image: "1", name: "Spicy fresh crab", information: "Waroenk kita", price: "$35" },
-        { image: "2", name: "Delicious shrimp", information: "Seafood Palace", price: "$25" },
-        { image: "3", name: "Spicy fresh crab", information: "Waroenk kita", price: "$35" },
+        { image: "1", name: "Spicy fresh crab", information: "Waroenk kita", price: 35 },
+        { image: "2", name: "Delicious shrimp", information: "Seafood Palace", price: 25 },
+        { image: "3", name: "Spicy fresh crab", information: "Waroenk kita", price: 35 },
     ];
 
     return (
@@ -41,6 +66,8 @@ export const CartScreen = ({ navigation }) => {
                     data={ProductList}
                     renderItem={({ item, index }) => (
                         <View style={styles.items}>
+                            
+                           
                             <Image
                                 source={require("../../../assets/OrderDetails/product1.png")}
                                 style={styles.itemImage}
@@ -48,7 +75,7 @@ export const CartScreen = ({ navigation }) => {
                             <View style={styles.itemDetail}>
                                 <Text style={styles.itemName}>{item.name}</Text>
                                 <Text style={styles.itemInformation}>{item.information}</Text>
-                                <Text style={styles.itemPrice}>{item.price}</Text>
+                                <Text style={styles.itemPrice}>${item.price}</Text>
                             </View>
                             <View style={styles.itemHandle}>
                                 <Pressable onPress={() => handleMinus(index)}>
@@ -88,7 +115,9 @@ export const CartScreen = ({ navigation }) => {
                         source={require('../../../assets/OrderDetails/backgroundTotal.png')}
                         style={styles.backgroundContainer}
                     >
-                        <View style={styles.totalHandle}>
+                        
+                        <TotalPrice totalPrice={totalPrice} navigation={navigation} />
+                        {/* <View style={styles.totalHandle}>
                             <View style={styles.totalDetail}>
                                 <View style={styles.contentLeft}>
                                     <Text style={styles.textWhite}>Sub-Total</Text>
@@ -111,7 +140,7 @@ export const CartScreen = ({ navigation }) => {
                                     <Text style={styles.textAction}>Place My Order</Text>
                                 </Pressable>
                             </View>
-                        </View>
+                        </View> */}
                     </ImageBackground>
                 </View>
             </ScrollView>
@@ -180,60 +209,7 @@ const styles = StyleSheet.create({
         width: 346,
     },
 
-    totalHandle: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        paddingHorizontal: 20,
-        color: '#FFF',
-    },
 
-    totalDetail: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-
-    textTotal: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#FFF',
-        marginTop: 10,
-    },
-
-
-    contentLeft: {
-        marginLeft: 24,
-    },
-
-    contentRight: {
-        flex: 1,
-        alignItems: 'flex-end',
-        marginRight: 24,
-    },
-
-    textSumPrice: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#FFF',
-        marginTop: 10,
-    },
-
-    buttonSubmit: {
-        marginTop: 20,
-    },
-
-    actionButton: {
-        backgroundColor: '#FFF',
-        paddingVertical: 15,
-        alignItems: 'center',
-        borderRadius: 15,
-    },
-
-    textAction: {
-        color: '#6B50F6',
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
     actionDelete: {
         backgroundColor: '#6B50F6',
         flexDirection: "row",
