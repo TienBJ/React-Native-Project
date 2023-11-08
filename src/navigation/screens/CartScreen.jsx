@@ -40,7 +40,7 @@ export const CartScreen = ({ navigation }) => {
             const subtotal = newCounts[index] * itemPrice;
     
     
-            const newTotalPrice = totalPrice + subtotal;
+            const newTotalPrice = totalPrice - subtotal;
             setTotalPrice(newTotalPrice);
         }
         else {
