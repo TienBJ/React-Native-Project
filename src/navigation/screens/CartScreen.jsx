@@ -14,7 +14,7 @@ export const CartScreen = ({ navigation }) => {
             return total + (counts[index] * itemPrice);
         }, 0);
         setTotalPrice(initialTotalPrice);
-    }, []);
+    }, [counts]);
 
     const handlePlus = (index) => {
         const newCounts = [...counts];
