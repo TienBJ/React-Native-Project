@@ -8,11 +8,13 @@ const MainContent = ({ navigation }) => {
 
     const renderItem = ({ item }) => {
         return (
-            <View style={styles.productContainer}>
+            <Pressable
+                onPress={() => navigation.navigate('ProductDetaiScreen')}
+                style={styles.productContainer}>
                 <Image source={item.image} style={styles.productImage} />
                 <Text style={styles.productName}>{item.name}</Text>
                 <Text style={styles.textMin}>12 Mins</Text>
-            </View>
+            </Pressable>
         );
     };
 
@@ -26,9 +28,9 @@ const MainContent = ({ navigation }) => {
                 >
                     <View style={styles.contentBackground}>
                         <Text style={styles.spectialText}>Spectial Deal For October</Text>
-                        <Pressable 
-                        onPress={() => navigation.navigate('VoucherPromote')}
-                        style={styles.actionBuyNow}>
+                        <Pressable
+                            onPress={() => navigation.navigate('VoucherPromote')}
+                            style={styles.actionBuyNow}>
                             <Text style={styles.textBuyNow}>
                                 Buy Now
                             </Text>

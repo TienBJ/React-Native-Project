@@ -16,7 +16,9 @@ export const VoucherPromote = ({ navigation }) => {
                     />
                     <View style={styles.content}>
                         <Text style={styles.titleEvent}>Special Deal For October</Text>
-                        <Pressable style={styles.actionSubmit}>
+                        <Pressable
+                            onPress={() => navigation.navigate('ProductDetaiScreen')}
+                            style={styles.actionSubmit}>
                             <Text style={styles.textSubmit1}>Order Now</Text>
                         </Pressable>
                     </View>

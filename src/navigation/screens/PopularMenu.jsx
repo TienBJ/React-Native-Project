@@ -14,7 +14,9 @@ const PopularMenu = ({ navigation }) => {
             </View>
 
             <View style={styles.listItem}>
-                <Pressable style={styles.item}>
+                <Pressable 
+                onPress={() => navigation.navigate('DetailMenuScreen')}
+                style={styles.item}>
                     <Image
                         source={require('../../../assets/Home/HerbalPancake.png')}
                     />

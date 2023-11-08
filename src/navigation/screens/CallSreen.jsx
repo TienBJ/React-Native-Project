@@ -1,98 +1,52 @@
-import React from "react";
+import * as React from "react";
 import { SafeAreaView, View, Image, Text, Pressable, StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
+import { styles } from "./CallFinish";
 
 export const CallScreen = ({ navigation }) => {
+
+    const [isSmallVolume, setIsSmallVolume] = React.useState(true);
+
+    const ImageChange = () => {
+        setIsSmallVolume(!isSmallVolume);
+    };
+
     return (
         <ImageBackground>
             <SafeAreaView style={styles.container}>
-                <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
-                    <Image source={require('../../../assets/iconBack.png')} />
-                </TouchableOpacity>
-                <Text style={styles.chatTitle}>Chat</Text>
-                <View style={styles.chatDetail}>
+                <View style={styles.imageProfile}>
                     <Image
-                        source={require("../../../assets/Message/Louis.png")}
+                        source={require('../../../assets/ImageProfile.png')}
                     />
-                    <View style={styles.userInformation}>
-                        <Text style={styles.userName}>Louis Kelly</Text>
-                        <Text style={styles.userStatus}>Online</Text>
-                    </View>
-                    <Pressable>
+                </View>
+                <View style={{ gap: 20, alignItems: 'center' }}>
+                    <Text style={styles.userName}>Richard Lewis</Text>
+                    <Text style={{ opacity: 0.3 }}>Ringing . . .</Text>
+                </View>
+                <View style={styles.statusCall}>
+                    <Pressable onPress={ImageChange}>
+                        {isSmallVolume ? (
+                            <View style={styles.speakerIcon}>
+                                <Image
+                                    source={require("../../../assets/Message/iconSpeaker.png")}
+                                />
+                            </View>) : (
+                            <View style={styles.speakerIcon}>
+                                <Image
+                                    source={require("../../../assets/Message/VolumeOff.png")}
+                                />
+                            </View>
+                        )}
+
+                    </Pressable>
+                    <Pressable
+                        onPress={() => navigation.navigate('CallFinishScreen')}
+                    >
                         <Image
-                            source={require('../../../assets/Message/IconCall.png')}
-                            style={styles.actionCall}
+                            source={require("../../../assets/cancelCall.png")}
                         />
                     </Pressable>
                 </View>
-                <View style={styles.messageContent}>
-                    <View style={styles.content}>
-                        <Text style={styles.contentLeft}>Just to order</Text>
-                    </View>
-                    <View style={styles.content}>
-                        <Text style={styles.contentRight}>Okay, for what level of spiciness?</Text>
-                    </View>
-                    <View style={styles.content}>
-                        <Text style={styles.contentLeft}>Okay, wait a minute 👍</Text>
-                    </View>
-                    <View style={styles.content}>
-                        <Text style={styles.contentRight}>Okay I'm waiting  👍</Text>
-                    </View>
-                </View>
-
             </SafeAreaView>
         </ImageBackground>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: "column",
-        paddingTop: 50,
-        gap: 20,
-        padding: 20,
-    },
-    chatTitle: {
-        fontSize: 25,
-        fontWeight: "bold",
-    },
-    chatDetail: {
-        flexDirection: "row",
-        alignItems: "center",
-        backgroundColor: "#E5E5E5",
-        height: 81,
-        paddingVertical: 8,
-        paddingHorizontal: 10,
-        borderRadius: 15,
-    },
-    userInformation: {
-        flex: 1,
-        marginLeft: 20,
-    },
-    userName: {
-        fontSize: 15,
-        fontWeight: "bold",
-    },
-    userStatus: {
-        fontSize: 14,
-        opacity: 0.3,
-    },
-    messageContent: {
-        flex: 1,
-        gap: 20,
-    },
-    content: {
-        backgroundColor: "blue",
-        height: 41,
-        paddingBottom: 10,
-        borderRadius: 13,
-        justifyContent: 'center',
-        padding: 12,
-
-    },
-    contentLeft: {
-        textAlign: 'left',
-    },
-    contentRight: {
-        textAlign: 'right',
-    },
-})

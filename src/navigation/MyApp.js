@@ -20,6 +20,13 @@ import { ExploreMenuWithFillter } from "./screens/ExploreMenuWithFillter";
 import ExploreRestarantWithFillter from "./screens/ExploreRestarantWithFillter";
 import { NavigationContainer } from "@react-navigation/native";
 import SetLacationScreen from "./screens/SetLocation";
+import { CallScreen } from "./screens/CallSreen";
+import { CallFinishScreen } from "./screens/CallFinish";
+import { CallThanksScreen } from "./screens/CallThanks";
+import { RateRestaurant } from "./screens/RateRestaurant";
+import { RateFood } from "./screens/RateFood";
+import ProductDetaiScreen from "./screens/DetailProduct";
+import DetailMenuScreen from "./screens/DetailMenu";
 
 const homeName = "Home";
 const cartName = "Cart";
@@ -45,7 +52,7 @@ export default function MyApp() {
                         if (rn === homeName) {
                             imageSource = require('../../assets/Home/Home.png');
                         } else if (rn === profileName) {
-                            imageSource = require('../../assets/Home/Profile.png');
+                            imageSource = require('../../assets/Home/userTab.png');
                         } else if (rn === cartName) {
                             imageSource = require('../../assets/Home/Buy.png');
                         } else if (rn === chatName) {
@@ -55,7 +62,7 @@ export default function MyApp() {
 
 
                         return (
-                            <View style={focused ? { backgroundColor: "#6B50F6", borderRadius: 12, flexDirection: "row", alignItems: 'center', paddingHorizontal: 10, opacity: 0.3, height: 44 } : null}>
+                            <View style={focused ? { backgroundColor: "#6B50F6", borderRadius: 12, flexDirection: "row", alignItems: 'center', paddingHorizontal: 10, backgroundColor: 'rgba(107, 80, 246, 0.1)',  height: 44 } : null}>
                                 <Image
                                     source={imageSource}
                                     size={size}
@@ -79,7 +86,8 @@ export default function MyApp() {
                     tabBarStyle: {
                         height: 74,
                         borderRadius: 15,
-                        borderTopRightRadius: 15, backgroundColor: 'white', position: 'absolute',
+                        backgroundColor: '#FFF', 
+                        position: 'absolute',
                         width: 350,
                         marginLeft: 5,
                         paddingHorizontal: 15,
@@ -114,6 +122,13 @@ export default function MyApp() {
                 <Stack.Screen name="OrderScreen" component={OrderScreen} />
                 <Stack.Screen name="ChatDetailScreen" component={ChatDetailScreen} />
                 <Stack.Screen name="SetLacationScreen" component={SetLacationScreen}/>
+                <Stack.Screen name="CallScreen" component={CallScreen}/>
+                <Stack.Screen name="CallFinishScreen" component={CallFinishScreen}/>
+                <Stack.Screen name="CallThanksScreen" component={CallThanksScreen}/>
+                <Stack.Screen name="RateRestaurant" component={RateRestaurant}/>
+                <Stack.Screen name="RateFood" component={RateFood}/>
+                <Stack.Screen name="ProductDetaiScreen" component={ProductDetaiScreen}/>
+                <Stack.Screen name="DetailMenuScreen" component={DetailMenuScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )

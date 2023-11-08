@@ -2,14 +2,14 @@ import React from "react";
 import { View, Text, SafeAreaView, Pressable, StyleSheet, Image, ImageBackground, ScrollView } from "react-native";
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
-export default function ProductDetaiScreen() {
+export default function DetailMenuScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <ParallaxScrollView
                 parallaxHeaderHeight={442}
                 renderForeground={() => (
                     <ImageBackground
-                        source={require('../../../assets/DetailProduct/PhotoRestaurant.png')}
+                        source={require('../../../assets/DetailMenu/menuPhoto.png')}
                         style={styles.imageBackground}
                     />
                 )}
@@ -21,7 +21,7 @@ export default function ProductDetaiScreen() {
                         <View style={styles.scrollToll}></View>
                     </View>
                     <View style={styles.topTitle}>
-                        <View style={{ backgroundColor: "#3FDA85", width: 76, height: 34, borderRadius: 18.5, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(63, 218, 133, 0.1)'}}>
+                        <View style={{ backgroundColor: "#3FDA85", width: 76, height: 34, borderRadius: 18.5, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(63, 218, 133, 0.1)' }}>
                             <Text style={{ color: "#6B50F6" }}>Popular</Text>
                         </View>
                         <View style={{ flexDirection: "row", gap: 10, alignItems: 'center' }}>
@@ -33,7 +33,7 @@ export default function ProductDetaiScreen() {
                             />
                         </View>
                     </View>
-                    <Text style={{ fontSize: 27, fontWeight: "bold" }}>Wijie Bar and Resto</Text>
+                    <Text style={{ fontSize: 27, fontWeight: "bold" }}>Rainbow Sandwich Sugarless</Text>
                     <View style={{ flexDirection: "row", gap: 20 }}>
                         <View style={{ flexDirection: "row", gap: 10, alignItems: 'center' }}>
                             <Image
@@ -48,45 +48,19 @@ export default function ProductDetaiScreen() {
                             <Text style={{ opacity: 0.3 }}>4,8 Rating</Text>
                         </View>
                     </View>
-                    <Text style={{ fontSize: 13, }}>Most whole Alaskan Red King Crabs get broken down into legs, claws, and lump meat. We offer all of these options as well in our online shop, but there is nothing like getting the whole . . . .</Text>
+                    <Text style={{ fontSize: 13, }}>Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt. Velit non est cillum consequat cupidatat ex Lorem laboris labore aliqua ad duis eu laborum.
+
+                        Strowberry
+                        Cream
+                        wheat
+
+                        Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.</Text>
                     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                         <Text style={{ fontSize: 15, fontWeight: "bold" }}>Popular Menu</Text>
                         <Pressable>
                             <Text style={{ color: "#6B50F6", }}>View All</Text>
                         </Pressable>
                     </View>
-                    <ScrollView horizontal={true}>
-                        <View style={styles.listItems}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require("../../../assets/DetailProduct/item1.png")}
-                                />
-                                <Text style={{ fontSize: 15, fontWeight: "bold" }}>Spacy fresh crab</Text>
-                                <Text style={{ opacity: 0.5, fontSize: 13 }}>12 $</Text>
-                            </View>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require("../../../assets/DetailProduct/item2.png")}
-                                />
-                                <Text style={{ fontSize: 15, fontWeight: "bold" }}>Spacy fresh crab</Text>
-                                <Text style={{ opacity: 0.5, fontSize: 13 }}>12 $</Text>
-                            </View>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require("../../../assets/DetailProduct/item1.png")}
-                                />
-                                <Text style={{ fontSize: 15, fontWeight: "bold" }}>Spacy fresh crab</Text>
-                                <Text style={{ opacity: 0.5, fontSize: 13 }}>12 $</Text>
-                            </View>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require("../../../assets/DetailProduct/item2.png")}
-                                />
-                                <Text style={{ fontSize: 15, fontWeight: "bold" }}>Spacy fresh crab</Text>
-                                <Text style={{ opacity: 0.5, fontSize: 13 }}>12 $</Text>
-                            </View>
-                        </View>
-                    </ScrollView>
                     <Text style={{ fontSize: 15, fontWeight: "bold" }}>Testimonials</Text>
                     <View style={{ gap: 20 }}>
                         <View style={styles.listReview}>
@@ -132,6 +106,13 @@ export default function ProductDetaiScreen() {
                                     <Text style={{ fontSize: 12 }}>This Is great, So delicious! You Must Here, With Your family . . </Text>
                                 </View>
                             </View>
+                        </View>
+                    </View>
+                    <View style={styles.bottomButton}>
+                        <View style={styles.addToCartButton}>
+                            <Pressable>
+                                <Text style={styles.addToCartButtonText}>Add To Cart</Text>
+                            </Pressable>
                         </View>
                     </View>
 
@@ -205,6 +186,29 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 20,
         width: 223,
-    }
+    },
+    bottomButton: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: 'transparent', // Đặt màu nền tùy ý
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    addToCartButton: {
+        height: 57,
+        width: 326,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#6B50F6',
+        borderRadius: 15,
+    },
+
+    addToCartButtonText: {
+        color: '#FFF',
+        fontWeight: 'bold',
+    },
 
 })

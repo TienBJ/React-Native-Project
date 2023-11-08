@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, SafeAreaView, Pressable, StyleSheet, Image, ImageBackground } from "react-native";
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <ParallaxScrollView
@@ -29,10 +29,14 @@ export default function ProfileScreen() {
                             <Text style={styles.name}>Arash Ranjbaran</Text>
                             <Text style={styles.email}>awdesign.ar@gmail.com</Text>
                         </View>
-                        <Image
-                            source={require('../../../assets/Profile/iconEdit.png')}
-                            style={styles.iconEdit}
-                        />
+                        <Pressable
+                        onPress={() => navigation.navigate("DetailMenuScreen")}
+                        >
+                            <Image
+                                source={require('../../../assets/Profile/iconEdit.png')}
+                                style={styles.iconEdit}
+                            />
+                        </Pressable>
                     </View>
                     <View style={styles.voucher}>
                         <Image
