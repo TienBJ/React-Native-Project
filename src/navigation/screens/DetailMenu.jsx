@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, SafeAreaView, Pressable, StyleSheet, Image, ImageBackground, ScrollView } from "react-native";
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
-export default function DetailMenuScreen() {
+export default function DetailMenuScreen({ navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <ParallaxScrollView
@@ -112,7 +112,9 @@ export default function DetailMenuScreen() {
             </ParallaxScrollView>
             <View style={styles.bottomButton}>
                 <View style={styles.addToCartButton}>
-                    <Pressable>
+                    <Pressable 
+                    onPress={() => navigation.navigate("PaymentScreen")}
+                    >
                         <Text style={styles.addToCartButtonText}>Add To Cart</Text>
                     </Pressable>
                 </View>
