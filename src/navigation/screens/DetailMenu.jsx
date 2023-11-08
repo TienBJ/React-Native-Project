@@ -108,16 +108,15 @@ export default function DetailMenuScreen() {
                             </View>
                         </View>
                     </View>
-                    <View style={styles.bottomButton}>
-                        <View style={styles.addToCartButton}>
-                            <Pressable>
-                                <Text style={styles.addToCartButtonText}>Add To Cart</Text>
-                            </Pressable>
-                        </View>
-                    </View>
-
                 </View>
             </ParallaxScrollView>
+            <View style={styles.bottomButton}>
+                <View style={styles.addToCartButton}>
+                    <Pressable>
+                        <Text style={styles.addToCartButtonText}>Add To Cart</Text>
+                    </Pressable>
+                </View>
+            </View>
         </SafeAreaView>
     )
 }
@@ -187,17 +186,14 @@ const styles = StyleSheet.create({
         gap: 20,
         width: 223,
     },
+
     bottomButton: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        backgroundColor: 'transparent', // Đặt màu nền tùy ý
         alignItems: 'center',
-        justifyContent: 'center',
     },
 
     addToCartButton: {
+        position: 'absolute',
+        bottom: 20,
         height: 57,
         width: 326,
         justifyContent: 'center',
@@ -210,5 +206,6 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontWeight: 'bold',
     },
+
 
 })

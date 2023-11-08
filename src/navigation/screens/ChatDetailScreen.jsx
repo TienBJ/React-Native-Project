@@ -1,7 +1,15 @@
 import React from "react";
-import { SafeAreaView, View, Image, Text, Pressable, StyleSheet, TouchableOpacity, ImageBackground, TextInput } from "react-native";
+import { SafeAreaView, View, Image, Text, Pressable, StyleSheet, TouchableOpacity, ImageBackground, TextInput, ScrollView } from "react-native";
 
 export const ChatDetailScreen = ({ navigation }) => {
+
+    const messages = [
+        { text: "Just to order", sender: "receiver" },
+        { text: "Okay, for what level of spiciness?", sender: "sender" },
+        { text: "Okay, wait a minute 👍", sender: "receiver" },
+        { text: "Okay I'm waiting  👍", sender: "sender" },
+    ];
+
     return (
         <ImageBackground>
             <SafeAreaView style={styles.container}>
@@ -26,28 +34,13 @@ export const ChatDetailScreen = ({ navigation }) => {
                         />
                     </Pressable>
                 </View>
-                <View style={styles.listContents}>
-                    <View style={styles.content}>
-                        <View style={styles.left}>
-                            <Text style={styles.contentLeft}>Just to order</Text>
+                <ScrollView style={styles.listContents}>
+                    {messages.map((message, index) => (
+                        <View key={index} style={message.sender === "sender" ? styles.senderMessage : styles.receiverMessage}>
+                            <Text style={message.sender === "sender" ? styles.senderText : styles.receiverText}>{message.text}</Text>
                         </View>
-                    </View>
-                    <View style={styles.content}>
-                        <View style={styles.right}>
-                            <Text style={styles.contentRight}>Okay, for what level of spiciness?</Text>
-                        </View>
-                    </View>
-                    <View style={styles.content}>
-                        <View style={styles.left}>
-                            <Text style={styles.contentLeft}>Okay, wait a minute 👍</Text>
-                        </View>
-                    </View>
-                    <View style={styles.content}>
-                        <View style={styles.right}>
-                            <Text style={styles.contentRight}>Okay I'm waiting  👍</Text>
-                        </View>
-                    </View>
-                </View>
+                    ))}
+                </ScrollView>
                 <View style={styles.inputMessage}>
                     <View style={{ flexDirection: 'row', gap: 120 }}>
                         <TextInput
@@ -99,6 +92,7 @@ const styles = StyleSheet.create({
         gap: 20,
     },
     content: {
+        width: 'auto',
         height: 41,
         paddingBottom: 10,
         borderRadius: 13,
@@ -133,5 +127,31 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: 25,
         marginTop: 160,
-    }
+    },
+    senderMessage: {
+        backgroundColor: "#6B50F6",
+        padding: 12,
+        borderRadius: 13,
+        width: 'auto',
+        alignSelf: 'flex-end',
+        marginBottom: 10,
+    },
+    receiverMessage: {
+        backgroundColor: "#F6F6F6",
+        padding: 12,
+        borderRadius: 13,
+        width: 'auto',
+        alignSelf: 'flex-start',
+        marginBottom: 10,
+    },
+    senderText: {
+        color: '#FFF',
+        textAlign: 'right',
+    },
+    receiverText: {
+        color: '#22242E',
+        textAlign: 'right',
+        opacity: 0.8,
+    },
+
 })
