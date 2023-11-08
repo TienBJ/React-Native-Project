@@ -1,7 +1,8 @@
 import React from "react";
 import { SafeAreaView, View, Image, Text, Pressable, StyleSheet, TouchableOpacity, ImageBackground, ScrollView } from "react-native";
+import TotalPrice from "../../components/TotalPrice";
 
-export const PaymentScreen = ({ navigation }) => {
+export const PaymentScreen = ({ totalPrice, navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
@@ -51,7 +52,8 @@ export const PaymentScreen = ({ navigation }) => {
                     source={require('../../../assets/OrderDetails/backgroundTotal.png')}
                     style={styles.backgroundContainer}
                 >
-                    <View style={styles.totalHandle}>
+                    <TotalPrice totalPrice={totalPrice} navigation={navigation} />
+                    {/* <View style={styles.totalHandle}>
                         <View style={styles.totalDetail}>
                             <View style={styles.contentLeft}>
                                 <Text style={styles.textWhite}>Sub-Total</Text>
@@ -74,7 +76,7 @@ export const PaymentScreen = ({ navigation }) => {
                                 <Text style={styles.textAction}>Place My Order</Text>
                             </Pressable>
                         </View>
-                    </View>
+                    </View> */}
                 </ImageBackground>
             </View>
         </SafeAreaView>
