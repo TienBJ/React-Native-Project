@@ -1,4 +1,4 @@
-import React, { useEffect, useState,map} from "react";
+import React, { useEffect, useState, map } from "react";
 import { Alert } from "react-native";
 import { View, Text, Image, Pressable, ImageBackground, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
@@ -7,9 +7,10 @@ import TotalPrice from "../../components/TotalPrice";
 export const CartScreen = ({ navigation }) => {
     const [counts, setCounts] = useState([1, 1, 1]);
     const [totalPrice, setTotalPrice] = useState(0);
-    const totalItemPrice=0;
+    const [selectItems, setSelectItems] = useState([]);
+    const totalItemPrice = 0;
     useEffect(() => {
-        const initialTotalPrice = ProductList.reduce((total, item, index) => {
+        const initialTotalPrice = productList.reduce((total, item, index) => {
             const itemPrice = parseFloat(item.price);
             return total + (counts[index] * itemPrice);
         }, 0);
@@ -22,7 +23,7 @@ export const CartScreen = ({ navigation }) => {
         setCounts(newCounts);
 
 
-        const itemPrice = parseFloat(ProductList[index].price);
+        const itemPrice = parseFloat(productList[index].price);
         const subtotal = newCounts[index] * itemPrice;
 
 
@@ -31,15 +32,15 @@ export const CartScreen = ({ navigation }) => {
     };
 
     const handleMinus = (index) => {
-        if (counts[index] > 0) {
+        if (counts[index] > 1) {
             const newCounts = [...counts];
             newCounts[index]--;
             setCounts(newCounts);
 
-            const itemPrice = parseFloat(ProductList[index].price);
+            const itemPrice = parseFloat(productList[index].price);
             const subtotal = newCounts[index] * itemPrice;
-    
-    
+
+
             const newTotalPrice = totalPrice - subtotal;
             setTotalPrice(newTotalPrice);
         }
@@ -48,11 +49,40 @@ export const CartScreen = ({ navigation }) => {
         }
     };
 
-    const ProductList = [
+    const [productList, setProductList] = useState([
         { image: "1", name: "Spicy fresh crab", information: "Waroenk kita", price: 35 },
         { image: "2", name: "Delicious shrimp", information: "Seafood Palace", price: 25 },
         { image: "3", name: "Spicy fresh crab", information: "Waroenk kita", price: 35 },
-    ];
+    ]);
+
+    const handleDelete = (index) => {
+        Alert.alert(
+            "Confirm Deletion",
+            "Are you sure you want to delete this item?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed!"),
+                    style: "cancel",
+                },
+                {
+                    text: "Delete",
+                    onPress: () => confirmDelete(index),
+                    style: "destructive",
+                },
+            ]
+        );
+    };
+
+    const confirmDelete = (index) => {
+        const newSelectItems = [...selectItems];
+        newSelectItems.push(index);
+        setSelectItems(newSelectItems);
+
+        const newProductList = [...productList];
+        newProductList.splice(index, 1);
+        setProductList(newProductList);
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -63,11 +93,11 @@ export const CartScreen = ({ navigation }) => {
             <ScrollView>
 
                 <SwipeListView
-                    data={ProductList}
+                    data={productList}
                     renderItem={({ item, index }) => (
                         <View style={styles.items}>
-                            
-                           
+
+
                             <Image
                                 source={require("../../../assets/OrderDetails/product1.png")}
                                 style={styles.itemImage}
@@ -94,9 +124,11 @@ export const CartScreen = ({ navigation }) => {
                             </View>
                         </View>
                     )}
-                    renderHiddenItem={() => (
+                    renderHiddenItem={({ index }) => (
                         <View style={styles.actionDelete}>
-                            <Pressable>
+                            <Pressable
+                                onPress={() => handleDelete(index)}
+                            >
                                 <Image
                                     source={require('../../../assets/OrderDetails/trash.png')}
                                     style={styles.iconDelete}
@@ -115,32 +147,7 @@ export const CartScreen = ({ navigation }) => {
                         source={require('../../../assets/OrderDetails/backgroundTotal.png')}
                         style={styles.backgroundContainer}
                     >
-                        
                         <TotalPrice totalPrice={totalPrice} navigation={navigation} />
-                        {/* <View style={styles.totalHandle}>
-                            <View style={styles.totalDetail}>
-                                <View style={styles.contentLeft}>
-                                    <Text style={styles.textWhite}>Sub-Total</Text>
-                                    <Text style={styles.textWhite}>Delivery Charge</Text>
-                                    <Text style={styles.textWhite}>Discount</Text>
-                                    <Text style={styles.textTotal}>Total</Text>
-                                </View>
-                                <View style={styles.contentRight}>
-                                    <Text style={styles.textWhite}>120 $</Text>
-                                    <Text style={styles.textWhite}>10 $</Text>
-                                    <Text style={styles.textWhite}>20 $</Text>
-                                    <Text style={styles.textSumPrice}>150 $</Text>
-                                </View>
-                            </View>
-                            <View style={styles.buttonSubmit}>
-                                <Pressable
-                                    onPress={() => navigation.navigate('PaymentScreen')}
-                                    style={styles.actionButton}
-                                >
-                                    <Text style={styles.textAction}>Place My Order</Text>
-                                </Pressable>
-                            </View>
-                        </View> */}
                     </ImageBackground>
                 </View>
             </ScrollView>

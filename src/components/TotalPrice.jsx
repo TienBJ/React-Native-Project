@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         color: '#FFF',
     },
+    textWhite: {
+        color: "#FFF",
+    },
 
     totalDetail: {
         flexDirection: 'row',

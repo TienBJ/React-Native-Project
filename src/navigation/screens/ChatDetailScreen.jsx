@@ -54,15 +54,18 @@ export const ChatDetailScreen = ({ navigation }) => {
             </ScrollView>
             <View>
                 <View style={styles.inputMessage}>
-                    <View style={{ flexDirection: 'row', gap: 120 }}>
+                    <View style={{ flexDirection: 'row' }}>
                         <TextInput
                             style={styles.inputText}
                             placeholder={"Okay I'm waiting  👍"}
+                            multiline={true}
+                            numberOflines={4}
                             value={inputMessage}
                             onChangeText={(text) => setInputMessage(text)}
                         />
                         <Pressable
                             onPress={handleSend}
+                            style={styles.actionSend}
                         >
                             <Image
                                 source={require('../../../assets/Message/iconSend.png')}
@@ -149,6 +152,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
         position: "absolute",
         bottom: 20,
+        width: "100%",
     },
     senderMessage: {
         backgroundColor: "#6B50F6",
@@ -175,5 +179,13 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         opacity: 0.8,
     },
+    inputText: {
+        width: 230,
+    },
+    actionSend: {
+        position: "absolute",
+        marginLeft: 250,
+        justifyContent: "center",
+    }
 
 })

@@ -52,8 +52,8 @@ export const PaymentScreen = ({ totalPrice, navigation }) => {
                     source={require('../../../assets/OrderDetails/backgroundTotal.png')}
                     style={styles.backgroundContainer}
                 >
-                    <TotalPrice totalPrice={totalPrice} navigation={navigation} />
-                    {/* <View style={styles.totalHandle}>
+                    {/*<TotalPrice totalPrice={totalPrice} navigation={navigation} />*/}
+                    <View style={styles.totalHandle}>
                         <View style={styles.totalDetail}>
                             <View style={styles.contentLeft}>
                                 <Text style={styles.textWhite}>Sub-Total</Text>
@@ -76,7 +76,7 @@ export const PaymentScreen = ({ totalPrice, navigation }) => {
                                 <Text style={styles.textAction}>Place My Order</Text>
                             </Pressable>
                         </View>
-                    </View> */}
+                    </View>
                 </ImageBackground>
             </View>
         </SafeAreaView>
