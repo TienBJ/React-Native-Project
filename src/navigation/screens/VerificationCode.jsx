@@ -9,11 +9,11 @@ export const VerificationCodeScreen = ({ navigation }) => {
             </TouchableOpacity>
             <Text style={styles.Title}>Enter 4-digit Verification code</Text>
             <Text style={styles.textTile}>Code send to +123456**** . This code will expired in 01:30 </Text>
-            <View style={styles.code}>
-               <Text>1</Text>
-               <Text>4</Text>
-               <Text>2</Text>
-               <Text>1</Text>
+            <View style={styles.codeNumber}>
+               <Text style={styles.code}>1</Text>
+               <Text style={styles.code}>4</Text>
+               <Text style={styles.code}>2</Text>
+               <Text style={styles.code}>1</Text>
             </View>
             <View style={styles.buttonAction}>
                 <Pressable>
@@ -28,16 +28,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 38,
-        gap: 20,
+        gap: 30,
         padding: 25,
+        backgroundColor: "#FAFAFA"
     },
     Title: {
         fontSize: 25,
         fontWeight: "bold",
         width: 280,
+        color: '#22242E',
     },
     textTile: {
         width: 239,
+        
     },
     avata: {
         paddingTop: 44,
@@ -53,9 +56,21 @@ const styles = StyleSheet.create({
         marginLeft: 200,
 
     },
-    code: {
+    codeNumber: {
         flexDirection:'row',
-        gap:30,
+        gap: 100,
+        backgroundColor: "#FFF",
+        padding: 50,
+        borderRadius: 22,
+        shadowColor: "#FAFAFA",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+    },
+    code: {
+        color: "#22242E",
+        fontSize: 28,
         fontWeight: "bold",
     },
     buttonAction: {
@@ -71,7 +86,8 @@ const styles = StyleSheet.create({
     titleButton: {
         fontSize: 14,
         fontWeight: "bold",
-        color: '#FFF'
+        color: '#FFF',
+
     },
 
 })
