@@ -1,28 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   TextInput,
   StyleSheet,
-  Button,
-  Image,
   TouchableOpacity,
 } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
 
 const SetLocationScreen = () => {
   const [searchText, setSearchText] = useState("");
+  const [predictions, setPredictions] = useState([]);
   const [currentLocation, setCurrentLocation] = useState({
-    latitude: 37.78825, 
-    longitude: -122.4324, 
+    latitude: 37.78825,
+    longitude: -122.4324,
   });
-  const [showSetLocationButton, setShowSetLocationButton] = useState(true); 
-
+  const [showSetLocationButton, setShowSetLocationButton] = useState(true);
   const [coordinates, setCoordinates] = useState([]);
+  const [searchResult, setSearchResult] = useState(null);
 
-  const markerCoordinate = {
-    latitude: 37.8,
-    longitude: -122.4324, 
+  const vietnamCoordinate = {
+    latitude: 14.0583,
+    longitude: 108.2772,
   };
 
   const handleSetLocation = () => {
@@ -32,32 +31,100 @@ const SetLocationScreen = () => {
         longitude: currentLocation.longitude,
       },
       {
-        latitude: markerCoordinate.latitude,
-        longitude: markerCoordinate.longitude,
+        latitude: vietnamCoordinate.latitude,
+        longitude: vietnamCoordinate.longitude,
       },
     ];
 
     setCoordinates(lineCoordinates);
-
     setShowSetLocationButton(false);
   };
+
+  const handleSearch = async () => {
+    try {
+      const apiKey = "YOUR_GOOGLE_API_KEY"; // Replace with your actual API key
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?key=${apiKey}&input=${searchText}&inputtype=textquery&fields=geometry`
+      );
+      const data = await response.json();
+
+      console.log("Search API Response:", data);
+
+      if (data.status === "OK" && data.candidates.length > 0) {
+        const location = data.candidates[0].geometry.location;
+        setSearchResult(location);
+        setCurrentLocation({
+          latitude: location.lat,
+          longitude: location.lng,
+        });
+      } else {
+        setSearchResult(null);
+        console.warn("No results found");
+      }
+    } catch (error) {
+      console.error("Error searching location:", error.message);
+    }
+  };
+
+  const handlePredictionSelect = (prediction) => {
+    setSearchText(prediction.description);
+    setPredictions([]);
+    handleSearch(); // Perform search when a prediction is selected
+  };
+
+  const fetchPredictions = async () => {
+    try {
+      const apiKey = "YOUR_GOOGLE_API_KEY"; // Replace with your actual API key
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${apiKey}&input=${searchText}&types=geocode`
+      );
+      const data = await response.json();
+
+      console.log("Autocomplete API Response:", data);
+
+      if (data.status === "OK") {
+        setPredictions(data.predictions);
+      } else {
+        setPredictions([]);
+        console.warn("Autocomplete failed");
+      }
+    } catch (error) {
+      console.error("Error fetching predictions:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    if (searchText.length > 0) {
+      fetchPredictions();
+    } else {
+      setPredictions([]);
+    }
+  }, [searchText]);
 
   return (
     <View style={{ flex: 1 }}>
       <MapView
         style={{ flex: 1 }}
         initialRegion={{
-          latitude: currentLocation.latitude,
-          longitude: currentLocation.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitude: vietnamCoordinate.latitude,
+          longitude: vietnamCoordinate.longitude,
+          latitudeDelta: 10,
+          longitudeDelta: 10,
         }}
       >
+        {searchResult && (
+          <Marker
+            coordinate={{
+              latitude: searchResult.lat,
+              longitude: searchResult.lng,
+            }}
+            title={searchText}
+          />
+        )}
         <Marker
-          coordinate={markerCoordinate}
-          title="Đây là đánh dấu"
-          description="Vị trí cụ thể"
-          image={require("../../../assets/lct.png")}
+          coordinate={vietnamCoordinate}
+          title="Vietnam"
+          description="Beautiful country"
         />
         <Marker
           coordinate={{
@@ -68,11 +135,7 @@ const SetLocationScreen = () => {
           description="Bạn đang ở đây"
         />
         {coordinates.length > 0 && (
-          <Polyline
-            coordinates={coordinates}
-            strokeWidth={3}
-            strokeColor="blue"
-          />
+          <Polyline coordinates={coordinates} strokeWidth={3} strokeColor="blue" />
         )}
       </MapView>
       <View style={styles.searchBar}>
@@ -82,78 +145,27 @@ const SetLocationScreen = () => {
           value={searchText}
           onChangeText={(text) => setSearchText(text)}
         />
+        <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
+          <Text style={styles.searchButtonText}>Search</Text>
+        </TouchableOpacity>
       </View>
+      {predictions.length > 0 && (
+        <View style={styles.predictionsContainer}>
+          {predictions.map((prediction) => (
+            <TouchableOpacity
+              key={prediction.place_id}
+              style={styles.predictionItem}
+              onPress={() => handlePredictionSelect(prediction)}
+            >
+              <Text>{prediction.description}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
       {showSetLocationButton && (
-        <TouchableOpacity
-          style={styles.setLocationButton}
-          onPress={handleSetLocation}
-        >
+        <TouchableOpacity style={styles.setLocationButton} onPress={handleSetLocation}>
           <Text style={styles.setLocationButtonText}>Set Location</Text>
         </TouchableOpacity>
-      )}
-      {/* Phần khác thay thế nút "Set Location" */}
-      {!showSetLocationButton && (
-        <View style={styles.replacementContent}>
-          <Text style={{ marginBottom: 15, fontWeight: "bold" }}>
-            Track Orders
-          </Text>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-              alignItems: "center",
-              backgroundColor: "#FFFFFF",
-              height: 80,
-              borderRadius: 20,
-            }}
-          >
-            <View>
-              <Image source={require("../../../assets/Klein.png")} />
-            </View>
-            <View style={{}}>
-              <Text style={{ fontWeight: "bold" }}>Mr Kemplas</Text>
-              <Text style={{ color: "#22242E" }}>25 minutes on the way</Text>
-            </View>
-          </View>
-          <View style={{flexDirection:"row"}}>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#FFFFFF",
-                width: 300,
-                top: 10,
-                height: 40,
-                borderRadius: 10,
-              }}
-            >
-              <View>
-                <Image source={require("../../../assets/call.png")} />
-              </View>
-              <View>
-                <Text style={{ left: 10 }}>Call</Text>
-              </View>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#6B50F6",
-                width: 90,
-                top: 10,
-                left:10,
-                height: 40,
-                borderRadius: 10,
-              }}
-            >
-              <View>
-                <Image source={require("../../../assets/mess.png")} />
-              </View>
-            </View>
-          </View>
-        </View>
       )}
     </View>
   );
@@ -169,9 +181,20 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     zIndex: 1,
+    flexDirection: "row",
   },
   input: {
     height: 40,
+    flex: 1,
+  },
+  searchButton: {
+    backgroundColor: "#6B50F6",
+    padding: 10,
+    borderRadius: 20,
+    marginLeft: 10,
+  },
+  searchButtonText: {
+    color: "white",
   },
   setLocationButton: {
     position: "absolute",
@@ -187,15 +210,20 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
   },
-  replacementContent: {
+  predictionsContainer: {
     position: "absolute",
-    bottom: 20,
+    top: 150,
     left: 10,
     right: 10,
-    backgroundColor: "lightgray",
+    backgroundColor: "white",
+    borderRadius: 10,
+    zIndex: 1,
+    elevation: 3,
+  },
+  predictionItem: {
     padding: 10,
-    borderRadius: 20,
-    height: 190,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
   },
 });
 
