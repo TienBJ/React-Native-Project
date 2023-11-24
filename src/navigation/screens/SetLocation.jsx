@@ -1,116 +1,202 @@
-import * as React from "react";
-import { View, Text, Pressable, StyleSheet, SafeAreaView, Image, ImageBackground, TextInput } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Button,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import MapView, { Marker, Polyline } from "react-native-maps";
 
-export default function SetLacationScreen() {
-    return (
-        <ImageBackground
-            source={require('../../../assets/Maps/Maps.png')}
-            style={styles.imageBackground}
+const SetLocationScreen = () => {
+  const [searchText, setSearchText] = useState("");
+  const [currentLocation, setCurrentLocation] = useState({
+    latitude: 37.78825, 
+    longitude: -122.4324, 
+  });
+  const [showSetLocationButton, setShowSetLocationButton] = useState(true); 
+
+  const [coordinates, setCoordinates] = useState([]);
+
+  const markerCoordinate = {
+    latitude: 37.8,
+    longitude: -122.4324, 
+  };
+
+  const handleSetLocation = () => {
+    const lineCoordinates = [
+      {
+        latitude: currentLocation.latitude,
+        longitude: currentLocation.longitude,
+      },
+      {
+        latitude: markerCoordinate.latitude,
+        longitude: markerCoordinate.longitude,
+      },
+    ];
+
+    setCoordinates(lineCoordinates);
+
+    setShowSetLocationButton(false);
+  };
+
+  return (
+    <View style={{ flex: 1 }}>
+      <MapView
+        style={{ flex: 1 }}
+        initialRegion={{
+          latitude: currentLocation.latitude,
+          longitude: currentLocation.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      >
+        <Marker
+          coordinate={markerCoordinate}
+          title="Đây là đánh dấu"
+          description="Vị trí cụ thể"
+          image={require("../../../assets/lct.png")}
+        />
+        <Marker
+          coordinate={{
+            latitude: currentLocation.latitude,
+            longitude: currentLocation.longitude,
+          }}
+          title="Vị trí hiện tại của bạn"
+          description="Bạn đang ở đây"
+        />
+        {coordinates.length > 0 && (
+          <Polyline
+            coordinates={coordinates}
+            strokeWidth={3}
+            strokeColor="blue"
+          />
+        )}
+      </MapView>
+      <View style={styles.searchBar}>
+        <TextInput
+          style={styles.input}
+          placeholder="Tìm kiếm..."
+          value={searchText}
+          onChangeText={(text) => setSearchText(text)}
+        />
+      </View>
+      {showSetLocationButton && (
+        <TouchableOpacity
+          style={styles.setLocationButton}
+          onPress={handleSetLocation}
         >
-            <SafeAreaView style={styles.container}>
-                <View style={styles.actionSearch}>
-                    <Pressable style={styles.itemSearch}>
-                        <Image
-                            source={require('../../../assets/IconSearch.png')}
-                        />
-                        <TextInput
-                            style={styles.inputText}
-                            placeholder={'Find Your Lacation'}
-                            placeholderTextColor={'#6B50F6'}
-                        />
-                    </Pressable>
-                </View>
-                <View style={styles.location}>
-                    <Image
-                        source={require('../../../assets/Maps/iconLocation.png')}
-                    />
-                    <View style={styles.coverLocation}></View>
-                </View>
-                <View style={styles.actionLocation}>
-                    <Text style={{ opacity: 0.3 }}>Your Location</Text>
-                    <View style={styles.locationDetail}>
-                        <Image
-                            source={require("../../../assets/Maps/locatonButtom.png")}
-                        />
-                        <Text style={styles.locationAddress}>4517 Washington Ave. Manchester, Kentucky 39495</Text>
-                    </View>
-                    <View style={styles.buttonAction}>
-                        <Pressable>
-                            <Text style={styles.titleButton}>Set Location</Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </SafeAreaView>
-        </ImageBackground>
-    )
-}
+          <Text style={styles.setLocationButtonText}>Set Location</Text>
+        </TouchableOpacity>
+      )}
+      {/* Phần khác thay thế nút "Set Location" */}
+      {!showSetLocationButton && (
+        <View style={styles.replacementContent}>
+          <Text style={{ marginBottom: 15, fontWeight: "bold" }}>
+            Track Orders
+          </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              backgroundColor: "#FFFFFF",
+              height: 80,
+              borderRadius: 20,
+            }}
+          >
+            <View>
+              <Image source={require("../../../assets/Klein.png")} />
+            </View>
+            <View style={{}}>
+              <Text style={{ fontWeight: "bold" }}>Mr Kemplas</Text>
+              <Text style={{ color: "#22242E" }}>25 minutes on the way</Text>
+            </View>
+          </View>
+          <View style={{flexDirection:"row"}}>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "#FFFFFF",
+                width: 300,
+                top: 10,
+                height: 40,
+                borderRadius: 10,
+              }}
+            >
+              <View>
+                <Image source={require("../../../assets/call.png")} />
+              </View>
+              <View>
+                <Text style={{ left: 10 }}>Call</Text>
+              </View>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "#6B50F6",
+                width: 90,
+                top: 10,
+                left:10,
+                height: 40,
+                borderRadius: 10,
+              }}
+            >
+              <View>
+                <Image source={require("../../../assets/mess.png")} />
+              </View>
+            </View>
+          </View>
+        </View>
+      )}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    imageBackground: {
-        flex: 1,
-        width: "100%",
-        height: "100%",
-    },
-    container: {
-        flex: 1,
-        paddingHorizontal: 20,
-    },
-    actionSearch: {
-        backgroundColor: "#FFF",
-        height: 69,
-        width: 324,
-        marginTop: 100,
-        paddingHorizontal: 20,
-        justifyContent: 'center',
-        borderRadius: 22,
-    },
-    itemSearch: {
-        flexDirection: 'row',
-        gap: 20,
-    },
-    location: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        //marginTop: -100,
-    },
-    coverLocation: {
-        backgroundColor: "#6B50F6",
-        width: 216,
-        height: 216,
-        borderRadius: 120,
-        opacity: 0.1,
-        position: 'absolute',
-    },
-    locationDetail: {
-        flexDirection: 'row',
-        gap: 13,
-    },
-    actionLocation: {
-        backgroundColor: "#FFF",
-        height: 181,
-        borderRadius: 22,
-        paddingHorizontal: 20,
-        marginBottom: 20,
-        justifyContent: 'center',
-        gap: 10,
-    },
-    locationAddress: {
-        fontSize: 15,
-        fontWeight: "bold",
-    },
-    buttonAction: {
-        backgroundColor: "#6B50F6",
-        height: 57,
-        boxShadow: '0px 0px 50px 0px rgba(90, 108, 234, 0.07)',
-        borderRadius: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+  searchBar: {
+    position: "absolute",
+    top: 100,
+    left: 10,
+    right: 10,
+    backgroundColor: "white",
+    padding: 10,
+    borderRadius: 20,
+    zIndex: 1,
+  },
+  input: {
+    height: 40,
+  },
+  setLocationButton: {
+    position: "absolute",
+    bottom: 20,
+    left: 10,
+    right: 10,
+    backgroundColor: "#6B50F6",
+    padding: 10,
+    borderRadius: 20,
+    alignItems: "center",
+  },
+  setLocationButtonText: {
+    color: "white",
+    fontSize: 16,
+  },
+  replacementContent: {
+    position: "absolute",
+    bottom: 20,
+    left: 10,
+    right: 10,
+    backgroundColor: "lightgray",
+    padding: 10,
+    borderRadius: 20,
+    height: 190,
+  },
+});
 
-    titleButton: {
-        fontSize: 14,
-        fontWeight: "bold",
-        color: '#FFF'
-    },
-})
+export default SetLocationScreen;

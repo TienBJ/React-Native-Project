@@ -19,7 +19,7 @@ import { VoucherPromote } from "./screens/VoucherPromote";
 import { ExploreMenuWithFillter } from "./screens/ExploreMenuWithFillter";
 import ExploreRestarantWithFillter from "./screens/ExploreRestarantWithFillter";
 import { NavigationContainer } from "@react-navigation/native";
-import SetLacationScreen from "./screens/SetLocation";
+import SetLocationScreen from "./screens/SetLocation";
 import { CallScreen } from "./screens/CallSreen";
 import { CallFinishScreen } from "./screens/CallFinish";
 import { CallThanksScreen } from "./screens/CallThanks";
@@ -121,7 +121,7 @@ export default function MyApp() {
                 <Stack.Screen name="EditLocationScreen" component={EditLocationScreen} />
                 <Stack.Screen name="OrderScreen" component={OrderScreen} />
                 <Stack.Screen name="ChatDetailScreen" component={ChatDetailScreen} />
-                <Stack.Screen name="SetLacationScreen" component={SetLacationScreen}/>
+                <Stack.Screen name="SetLocationScreen" component={SetLocationScreen}/>
                 <Stack.Screen name="CallScreen" component={CallScreen}/>
                 <Stack.Screen name="CallFinishScreen" component={CallFinishScreen}/>
                 <Stack.Screen name="CallThanksScreen" component={CallThanksScreen}/>

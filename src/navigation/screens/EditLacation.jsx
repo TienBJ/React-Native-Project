@@ -31,7 +31,7 @@ export const EditLocationScreen = ({ navigation }) => {
                         <View style={styles.detaiLocation}>
                             <Text style={styles.addressDetail}>4517 Washington Ave. Manchester, Kentucky 39495</Text>
                             <Pressable
-                            onPress={() => navigation.navigate("SetLacationScreen")}
+                            onPress={() => navigation.navigate("SetLocationScreen")}
                             >
                                 <Text style={styles.setLocation}>set location</Text>
                             </Pressable>
